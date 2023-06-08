@@ -3,21 +3,6 @@ import React from 'react';
 import { Card, CardActions, CardContent, Stack, Button, Typography } from '@mui/material';
 
 import {initializeApp} from 'firebase/app';
-import config from './cfg';
-
-// Your web app's Firebase configuration
-const firebaseConfig = {
-  apiKey: config.api_key,
-  authDomain: "np-problems.firebaseapp.com",
-  databaseURL: "https://np-problems-default-rtdb.firebaseio.com",
-  projectId: "np-problems",
-  storageBucket: "np-problems.appspot.com",
-  messagingSenderId: "523092020162",
-  appId: "1:523092020162:web:82aa60edf28bbfbe0e645b"
-};
-
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 function App() {
   let games = [
