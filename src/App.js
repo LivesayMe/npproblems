@@ -2,8 +2,6 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { Card, CardActions, CardContent, Stack, Button, Typography } from '@mui/material';
 
-import {initializeApp} from 'firebase/app';
-
 function App() {
   let games = [
     {
