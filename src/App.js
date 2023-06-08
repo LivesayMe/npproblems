@@ -59,11 +59,11 @@ function App() {
       image: "./images/subsetsum.png",
       url: "/subsetsum"
     },
-    {
-      name: "Towers",
-      image: "./images/towers.png",
-      url: "/towers"
-    },
+    // {
+    //   name: "Towers",
+    //   image: "./images/towers.png",
+    //   url: "/towers"
+    // },
     {
       name: "Wave Function Collapse",
       image: "./images/wfc.png",
