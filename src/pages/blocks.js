@@ -7,6 +7,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Draggable, {DraggableCore} from 'react-draggable';
+import Navbar from '../navbar';
 
 function Blocks(props) {
     const [availableBlocks, setAvailableBlocks] = React.useState([]);
@@ -17,6 +18,7 @@ function Blocks(props) {
     const [blockDefaultPositions, setBlockDefaultPositions] = React.useState([]); //Stores the default position of each block
     const [blockPositions, setBlockPositions] = React.useState([{x:0,y:0}, {x:0,y:0}, {x:0,y:0}]); //Stores the current position of each block
     const [blockPlaced, setBlockPlaced] = React.useState([false, false, false]); //Stores whether or not a block has been placed
+    const [highlights, setHighlights] = React.useState([]); //Stores the highlights for each block
 
 
     React.useEffect(() => {
@@ -172,11 +174,27 @@ function Blocks(props) {
         let blockXRelRounded = Math.round(blockXRel / (gridSize / 8));
         let blockYRelRounded = Math.round(blockYRel / (gridSize / 8));
 
+        //Set the highlights
+        let highlights = [];
+        for (let i = 0; i < curBlock.length; i++) {
+            for (let j = 0; j < curBlock[i].length; j++) {
+                if (curBlock[i][j] === 1) {
+                    highlights.push([blockXRelRounded + j, blockYRelRounded + i]);
+                }
+            }
+        }
+
+        setHighlights(highlights);
+        console.log(highlights)
+
         console.log("Relative position: " + blockXRelRounded + ", " + blockYRelRounded)
         // console.log(gridSize);
     }
     
     const dragEndHandler = (e, data, i) => {
+        //
+        setHighlights([]);
+
         // If the block is over the grid, then set the value of the grid to the block
         //Otherwise move the block back to the initial position
 
@@ -404,17 +422,19 @@ function Blocks(props) {
         }
     }
 
+    const isHighlighted = (i, j) => {
+        for (let q = 0; q< highlights.length; q++) {
+            if (highlights[q][0] === j && highlights[q][1] === i) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     return (
         <Box sx={{ display: "flex", flexGrow: 1, width: "100%", alignItems: "center",  justifyContent: "center", flexDirection: "column" }}>
-            {/* Top Nav bar, primary color */}
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 1, m: 0, bgcolor: "primary.main", width: "100%" }}>
-                <a href={"/"} style={{textDecoration: "none"}}>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Home
-                    </Typography>
-                </a>
-            </Box>
+            <Navbar/>
 
             <Box sx={{ width: "700px" }}>
                 {/* Top Control Bar */}
@@ -433,7 +453,9 @@ function Blocks(props) {
                                 <Grid container justifyContent="center" spacing={.2}>
                                     {row.map((col, j) => (
                                         <Grid item key={j}>
-                                            <Paper sx={{ width: 50, height: 50, bgcolor: col === 0 ? "white" : "primary.main" }} />
+                                            <Paper sx={{ width: 50, height: 50, bgcolor: col === 0 ? (
+                                                isHighlighted(i, j) ? "secondary.main" : "background.default"
+                                            ) : "primary.main" }} />
                                         </Grid>
                                     ))}
                                 </Grid>

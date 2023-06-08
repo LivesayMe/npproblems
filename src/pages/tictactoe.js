@@ -7,6 +7,7 @@ import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { Tooltip } from '@mui/material';
+import Navbar from '../navbar';
 
 export default function Tictactoe() {
     const [board, setBoard] = useState(Array(9).fill(null));
@@ -212,17 +213,10 @@ export default function Tictactoe() {
 
     return (
         <Box sx={{ display: "flex", flexGrow: 1, width: "100%", alignItems: "center",  justifyContent: "center", flexDirection: "column" }}>
+            <Navbar/>
+
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1, m: 1, bgcolor: 'background.paper', width: "100%" }}>
                 Not an NP-Complete problem, just here for fun. Perfect AI uses minimax algorithm.
-            </Box>
-
-            {/* Top Nav bar, primary color */}
-            <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", p: 1, m: 0, bgcolor: "primary.main", width: "100%" }}>
-                <a href={"/"} style={{textDecoration: "none"}}>
-                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                        Home
-                    </Typography>
-                </a>
             </Box>
             {/* Top control bar (reset)*/}
             <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", p: 1, m: 0, bgcolor: "background.paper", width: "100%" }}>

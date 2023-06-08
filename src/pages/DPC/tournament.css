@@ -1,0 +1,9 @@
+button {
+    cursor: pointer;
+}
+
+a {
+    cursor: pointer;
+    display: block;
+    height: 30px;
+}

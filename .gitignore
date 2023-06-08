@@ -27,3 +27,6 @@ firebase.json
 firebase-debug.log
 .firebaserc
 /.firebase
+
+#API KEY
+cfg.js

@@ -1,0 +1,9 @@
+a {
+    /*Prevent the link from being on a new line*/
+    display: inline-block;
+}
+
+body {
+    margin: 0px;
+    padding: 0px;
+}

@@ -43,8 +43,6 @@ class Blocks:
     
         #Check for completed rows and columns, and remove them
         self.removeCompletedLines()
-
-        
         
         #Check if there are no more available blocks
         if len(self.availableBlocks) == 0:
@@ -158,7 +156,19 @@ class Blocks:
             fen += "#"
         return fen
     
-    
-
-
-
+    def fromFen(self, fen):
+        fen = fen.split("#")
+        grid = fen[0]
+        blocks = fen[1:-1]
+        self.grid = np.zeros((8, 8), dtype=np.int8)
+        self.availableBlocks = []
+        for i in range(8):
+            for j in range(8):
+                if grid[i * 8 + j] == "1":
+                    self.grid[i][j] = 1
+        for block in blocks:
+            block = block.split("|")
+            block = [list(map(int, list(row))) for row in block]
+            if len(block[-1]) == 0:
+                block = block[:-1]
+            self.availableBlocks.append(block)

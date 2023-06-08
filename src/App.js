@@ -2,7 +2,22 @@ import { Box } from '@mui/system';
 import React from 'react';
 import { Card, CardActions, CardContent, Stack, Button, Typography } from '@mui/material';
 
+import {initializeApp} from 'firebase/app';
+import config from './cfg';
 
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: config.api_key,
+  authDomain: "np-problems.firebaseapp.com",
+  databaseURL: "https://np-problems-default-rtdb.firebaseio.com",
+  projectId: "np-problems",
+  storageBucket: "np-problems.appspot.com",
+  messagingSenderId: "523092020162",
+  appId: "1:523092020162:web:82aa60edf28bbfbe0e645b"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 
 function App() {
   let games = [
@@ -26,25 +41,67 @@ function App() {
       image: "./images/nqueens.png",
       url: "/nqueens"
     },
-    {
-      name: "Bulls and Cows",
-      image: "./images/bullscows.png",
-      url: "/bullscows"
-    },
+    // {
+    //   name: "Bulls and Cows",
+    //   image: "./images/bullscows.png",
+    //   url: "/bullscows"
+    // },
     {
       name: "Blocks",
       image: "./images/blocks.png",
       url: "/blocks"
+    },
+    {
+      name: "AI Blocks",
+      image: "./images/ai_blocks.png",
+      url: "/aiblocks"
+    },
+    {
+      name: "Uno",
+      image: "./images/uno.png",
+      url: "/uno"
+    },
+    {
+      name: "Othello",
+      image: "./images/othello.png",
+      url: "/othello"
+    }, 
+    {
+      name: "Liar's Dice",
+      image: "./images/liarsdice.png",
+      url: "/liarsdice"
+    },
+    {
+      name: "Subset Sum",
+      image: "./images/subsetsum.png",
+      url: "/subsetsum"
+    },
+    {
+      name: "Towers",
+      image: "./images/towers.png",
+      url: "/towers"
+    },
+    {
+      name: "Wave Function Collapse",
+      image: "./images/wfc.png",
+      url: "/wfc"
     }
+    // {
+    //   name: "Racing",
+    //   image: "./images/racing.png",
+    //   url: "/racing"
+    // }
   ]
   return (
     <div className="App">
       {/*Navigation panel, image of each game on paper, mui*/}
-      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', alignItems: 'center', alignContent: 'center', p: 1, m: 1, bgcolor: 'background.paper' }}>
+      <Box sx={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', p: 1, m: 1, bgcolor: 'background.paper', height: "100%" }}>
         {games.map((game) => (
           <a href={game.url} style={
             {
               textDecoration: 'none',
+              // width: '100%',
+              height: '100%',
             }
           }>
             <Card sx={{ 
